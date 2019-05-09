@@ -1,6 +1,6 @@
 import urllib.request
-import xml.etree.Element.Tree as ET
-from math import sin,cos,swrt,atan2,radians
+import xml.etree.ElementTree as ET
+from math import sin,cos,sqrt,atan2,radians
 
 url = 'https://wservice.viabicing.cat/v1/getstations.php?v=1'
 response = urllib.request.urlopen(url)
@@ -18,6 +18,7 @@ for child in root.findall('station'):
 	if slots > mx[0]:
 		mx = (slots, child.find('street').text + ', ' + child.find('streetNumber').text)
 print(mx)
+
 
 def getDistance(lat,lon,latAcc,lonAcc):
 	R = 6373.0 #Radi de la terra aprox.
@@ -42,6 +43,9 @@ def calcProxim(lat,lon):
 			lonAcc = radians(float(child.find('long').text))
 			aux = getDistance(lat,lon,latAcc,lonAcc)
 			if aux < estacioMesProx[0]:
+				print("hola")
 				estacioMesProx = (aux,child.find('street').text + ', ' + child.find('streetNumber').text)
 
 	return estacioMesProx
+
+print(calcProxim(40,2))
