@@ -12,14 +12,9 @@ def pintaPoints(lista):
     image.save('mapa.png')
 
 
-
-#podria ser un filter amb funcions d'ordre superior.
 def procesList(lista):
-    aux = []
-    for i in lista:
-        if i[4] != '':
-            aux.append(i)
-    return aux
+  return filter(lambda x: x[4] != '', lista)
+  #aquest filter el que fa es que comproba que tinguin població.
 
 
 with open('worldcitiespop.csv', 'r') as f:
