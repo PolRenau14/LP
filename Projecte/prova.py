@@ -15,6 +15,8 @@ def pintaPoints(lista):
 def procesList(lista):
   return filter(lambda x: x[4] != '', lista)
   #aquest filter el que fa es que comproba que tinguin població.
+  #tambe podem fer que al llegir del document csv, llegim per files 
+  #( si la població es '' no la afegim a la llista ens estalviem un recorregut de la llista)
 
 
 with open('worldcitiespop.csv', 'r') as f:
