@@ -54,60 +54,61 @@ class QuadTree:
 		return False
 
 	def FoundQuadrant(self,latMIN,latMAX,lonMIN,lonMAX):
+		aux = []
 		if self != None:
 			if self.IsinQuadrant(latMIN,latMAX,lonMIN,lonMAX):
-				print(self.lat,self.lon)
+				aux.append((self.lat,self.lon))
 				if self.left1 != None:
-					self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+					aux.append(self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				if self.left2 != None:
-					self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+					aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				if self.right1 != None:
-					self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+					aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				if self.right2 != None:
-					self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+					aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 			else:
-				#print("(Latitud %f, Longitud: %f)" %(self.lat,self.lon))
-
+				
 				#D1 
 				if self.lat > latMAX and self.lon > lonMAX:
 					if self.left1 != None:
-						self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+						aux.append(self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				#D2 
 				elif self.lat < latMIN and self.lon > lonMAX:
 					if self.right1 != None:
-						self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+						aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				#D3 
 				elif self.lat < latMIN and self.lon < lonMIN:
 					if self.left2 != None:
-						self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+						aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				#D4 
 				elif self.lat > latMAX and self.lon < lonMIN:
 					if self.right2 != None:
-						self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+						aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 
 				elif self.lat <= latMAX and self.lat >= latMIN: #estic en range en la lat
 					if self.lon > lonMAX:
 						if self.left1 != None:
-							self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 						if self.right1 != None:
-							self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 					else:
 						if self.right2 != None:
-							self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 						if self.left2 != None:
-							self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 
 				elif self.lon <= lonMAX and self.lon >= lonMIN:
 					if self.lat > latMAX:
 						if self.left1 != None:
-							self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 						if self.left2 != None:
-							self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 					else:
 						if self.right1 != None:
-							self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 						if self.right2 != None:
-							self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX)
+							aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
+		return aux
 
 
 
@@ -120,4 +121,6 @@ root.InsertValue(3,6)
 root.InsertValue(4,5)
 root.InsertValue(3,3)
 
-root.FoundQuadrant(4,5,3,6)
+auxiliar = root.FoundQuadrant(3,5,3,6)
+
+print(auxiliar)
