@@ -21,6 +21,7 @@ LonMIN = 2,
 getQuadrant():
 	if isInCuadrant:
 		+ aquest,
+		#anem per tots els fills del node (self.left1,left2,right1,rigth2.getQuadrant())
 	else:
 		if self.lat <= LatMin # tenemos que ir por el right
 			if self.lon <= LonMIN #vamos por el right1
