@@ -1,6 +1,20 @@
+
+#aplana les llistes (llistes de llistes en una unica llista)
+def aplanaList(l):
+	aux = []
+	for x in l:
+		if isinstance(x,list):
+			aux =aux + aplanaList(x)
+		else:
+			aux.append(x)
+	return aux
+
+		
+
+
 class QuadTree:
 
-	def __init__(self,lat,lon):
+	def __init__(self,lat=None,lon=None,index = None):
 
 		self.left1 = None
 		self.left2 = None
@@ -8,43 +22,45 @@ class QuadTree:
 		self.right2 = None
 		self.lat = lat
 		self.lon = lon
+		self.index = index
 
-	def PrintTree(self):
+	
+	def PrintTree(self,x,s):
 		if self.left1:
-			self.left1.PrintTree()
+			self.left1.PrintTree(x+1,"left1 => ")
 		if self.left2:
-			self.left2.PrintTree()
-		print("(Latitud %f, Longitud: %f)" %(self.lat,self.lon))
+			self.left2.PrintTree(x+1,"left2 => ")
+		print("\t" * x + s+"(Latitud %f, Longitud: %f   Numero %d)" %(self.lat,self.lon,self.index))
 
 		if self.right1:
-			self.right1.PrintTree()
+			self.right1.PrintTree(x+1,"right1 => ")
 		if self.right2:
-			self.right2.PrintTree()
+			self.right2.PrintTree(x+1,"right2 => ")
+		print("--------------------------------------------------")
 
-
-	def InsertValue(self,lat,lon):
+	def InsertValue(self,lat,lon,index):
 		if lat < self.lat: # van a la part left
 			if lon < self.lon: #left1
 				if self.left1:
-					self.left1.InsertValue(lat,lon)
+					self.left1.InsertValue(lat,lon,index)
 				else:
-					self.left1 = QuadTree(lat,lon)
+					self.left1 = QuadTree(lat,lon,index)
 			else:
 				if self.left2: 
-					self.left2.InsertValue(lat,lon)
+					self.left2.InsertValue(lat,lon,index)
 				else:
-					self.left2 = QuadTree(lat,lon)
+					self.left2 = QuadTree(lat,lon,index)
 		else: # van a la part right
 			if lon < self.lon: # right 1
 				if self.right1:
-					self.right1.InsertValue(lat,lon)
+					self.right1.InsertValue(lat,lon,index)
 				else:
-					self.right1 = QuadTree(lat,lon)
+					self.right1 = QuadTree(lat,lon,index)
 			else:
 				if self.right2:
-					self.right2.InsertValue(lat,lon)
+					self.right2.InsertValue(lat,lon,index)
 				else:
-					self.right2 = QuadTree(lat,lon)
+					self.right2 = QuadTree(lat,lon,index)
 
 	def IsinQuadrant(self,latMIN,latMAX,lonMIN,lonMAX):
 		#print("lat min: %f, lat max: %f, lonMin: %f, lonMAX: %f. En LAT: %f, LON: %f" %(latMIN,latMAX,lonMIN,lonMAX,self.lat,self.lon))
@@ -57,7 +73,7 @@ class QuadTree:
 		aux = []
 		if self != None:
 			if self.IsinQuadrant(latMIN,latMAX,lonMIN,lonMAX):
-				aux.append((self.lat,self.lon))
+				aux.append((self.lat,self.lon,self.index))
 				if self.left1 != None:
 					aux.append(self.left1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				if self.left2 != None:
@@ -67,7 +83,7 @@ class QuadTree:
 				if self.right2 != None:
 					aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 			else:
-				
+
 				#D1 
 				if self.lat > latMAX and self.lon > lonMAX:
 					if self.left1 != None:
@@ -78,12 +94,12 @@ class QuadTree:
 						aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				#D3 
 				elif self.lat < latMIN and self.lon < lonMIN:
-					if self.left2 != None:
-						aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
-				#D4 
-				elif self.lat > latMAX and self.lon < lonMIN:
 					if self.right2 != None:
 						aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
+				#D4 
+				elif self.lat > latMAX and self.lon < lonMIN:
+					if self.left2 != None:
+						aux.append(self.left2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 
 				elif self.lat <= latMAX and self.lat >= latMIN: #estic en range en la lat
 					if self.lon > lonMAX:
@@ -108,19 +124,8 @@ class QuadTree:
 							aux.append(self.right1.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 						if self.right2 != None:
 							aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
-		return aux
+				else:
+					print("No Soc Res")
+		return aplanaList(aux)
 
 
-
-			
-	
-
-
-root = QuadTree(3,4)
-root.InsertValue(3,6)
-root.InsertValue(4,5)
-root.InsertValue(3,3)
-
-auxiliar = root.FoundQuadrant(3,5,3,6)
-
-print(auxiliar)
