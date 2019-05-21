@@ -15,3 +15,7 @@ C = 2*atan2( sqrt(a),  sqrt( 1- a) )
 
 
 solve 2*atan2(sqrt(a),sqrt(1-a)) = 0,00004705144291
+
+https://www.movable-type.co.uk/scripts/latlong.html
+
+el Bearing son els graus, 90 i 0. 
