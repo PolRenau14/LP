@@ -1,0 +1,28 @@
+Swift => fuertemente tirado, aunque no es necesario siempre la declaración de variables gracias a ala inferencia de tipo parecida a la de python.
+
+Creado por Apple como lenguaje de programación propio para construir su SO i las apps para sus dispositivos.
+
+Lenguaje compilado.
+
+Swift combines powerful type inference and pattern matching with a modern, lightweight syntax, allowing complex ideas to be expressed in a clear and concise manner. As a result, code is not just easier to write, but easier to read and maintain as well.
+
+
+Deriva de Objective C. Muchas cosas en común.
+ Objective-C, Rust, Haskell, Ruby, Python, C#, CLU
+Funcionalidades de C i objective C pueden ser llamadas desde Swift (algunas).
+
+2014- 09 - 09 primera version.  1.0
+
+A día de hoy version 5.0
+
+Tipos de datos divididos en dos:
+
+Valor = se realiza una copia del tipo.
+
+Referencia = mutable
+
+Per fer un resumen dels aspects generals de Swift.
+https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html
+
+INfo per a mi no per el tribal.
+https://developer.ibm.com/technologies/artificial-intelligence/
