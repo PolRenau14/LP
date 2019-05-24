@@ -28,3 +28,5 @@ https://networkx.github.io/documentation/stable/reference/algorithms/generated/n
 
 shaura de fer com el subgraf nx.number_connected_components(G)
 
+Fer una funció per cada missatge que ha de enviar el Bot de bad format request Codig mes net i no repetim coses.
+
