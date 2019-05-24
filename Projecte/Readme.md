@@ -22,3 +22,9 @@ el Bearing son els graus, 90 i 0.
 
 
 Operador ternary => es important ja que compacta codig.
+
+
+https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.number_connected_components.html#networkx.algorithms.components.number_connected_components
+
+shaura de fer com el subgraf nx.number_connected_components(G)
+
