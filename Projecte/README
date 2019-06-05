@@ -1,0 +1,29 @@
+Bot Telegram Mapes:
+
+Aquest programa genera un bot de python que el que fa es mitjançant dades de ciutats extretes de "", ens genera conexions entre aquestes, i ens busca la ruta més òptima usant la distància Heuclidia entre dos punts. ens adjunta imatges de tot, i tenim una comanda /help que ens indica quina possibilitat de comandes tenim operativa.
+Aquest projecte esta preparat per afegir noves funcionalitats, com per exemple pintar en un mapa totes les ciutats o pobles d'un país en concret, tot i que a dia d'avui no esta implementat
+
+Abans de començar, hem d'instalar unes llibreries que s'usen en el proecte.
+
+Pre-requisits:
+
+Tenir al sistema operatiu, o a la màquina on s'executa python, i afegir les següents llibreries.
+
+networkx
+haversine
+FuzzyWuzzy
+staticmap
+requests
+python-telegram-bot
+
+
+Instalació:
+
+pip3 install requirments.txt
+
+
+Autor:
+
+Pol Renau Larrodé
+
+

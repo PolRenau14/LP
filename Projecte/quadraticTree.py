@@ -9,9 +9,6 @@ def aplanaList(l):
 			aux.append(x)
 	return aux
 
-		
-
-
 class QuadTree:
 
 	def __init__(self,lat=None,lon=None,index = None):
@@ -24,7 +21,6 @@ class QuadTree:
 		self.lon = lon
 		self.index = index
 
-	
 	def PrintTree(self,x,s):
 		if self.left1:
 			self.left1.PrintTree(x+1,"left1 => ")
@@ -125,7 +121,5 @@ class QuadTree:
 						if self.right2 != None:
 							aux.append(self.right2.FoundQuadrant(latMIN,latMAX,lonMIN,lonMAX))
 				else:
-					print("No Soc Res")
+					print("No Soc Res") #aquest cas no s'hauria de donar mai, esta posat per veure que no hi ha cap error.
 		return aplanaList(aux)
-
-
